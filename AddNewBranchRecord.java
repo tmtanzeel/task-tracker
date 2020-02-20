@@ -19,7 +19,7 @@ public class AddNewBranchRecord {
 
     public static void askInitialDetails() {
         Scene scene;
-        Stage stage;
+        Stage stage = new Stage();
         Button doneButton, clearButton, cancelButton;
         Label branchNameLabel, userStoryLabel, branchSourceNameLabel;
         GridPane gridPaneLayout;
@@ -29,6 +29,9 @@ public class AddNewBranchRecord {
         doneButton = new Button("Done");
         clearButton = new Button("Clear");
         cancelButton = new Button("Cancel");
+        cancelButton.setOnAction(e -> {
+            stage.close();
+        });
 
         branchNameLabel = new Label("Branch name");
         branchSourceNameLabel = new Label("Pulled from");
@@ -67,7 +70,6 @@ public class AddNewBranchRecord {
 
         scene=new Scene(borderPaneLayout, 350, 200);
 
-        stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("INITIAL DETAILS");
         stage.setScene(scene);
