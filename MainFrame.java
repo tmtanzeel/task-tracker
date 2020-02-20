@@ -20,6 +20,9 @@ public class MainFrame extends Application {
     public void start(Stage primarystage) {        
 
         addNewBranch=new Button("Add");
+        addNewBranch.setOnAction(e -> {
+            AddNewBranchRecord.askInitialDetails();
+        });
         showBranchStatus = new Button("Status");
 
         horizontalLayout2 = new HBox(10);
