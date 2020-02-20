@@ -1,5 +1,6 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -7,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
@@ -15,12 +17,13 @@ import javafx.geometry.Pos;
  */
 public class AddNewBranchRecord {
     
-    static TextField branchNameTextField, userStoryTextField, branchSourceNameTextField;
+    static TextField branchNameTextField, userStoryTextField;
 
     public static void askInitialDetails() {
         Scene scene;
-        Stage stage = new Stage();
+        final Stage stage = new Stage();
         Button doneButton, clearButton, cancelButton;
+        ComboBox combo_box;
         Label branchNameLabel, userStoryLabel, branchSourceNameLabel;
         GridPane gridPaneLayout;
         HBox horizontalBoxLayout;
@@ -41,8 +44,12 @@ public class AddNewBranchRecord {
         branchNameTextField.setPromptText("1000-branchname");
         userStoryTextField = new TextField("");
         userStoryTextField.setPromptText("2000-userstory");
-        branchSourceNameTextField = new TextField("");
-        branchSourceNameTextField.setPromptText("master");
+
+        final String branches[] = {"master"};
+
+        // Create a combo box
+        combo_box = new ComboBox(FXCollections.observableArrayList(branches)); 
+
 
         gridPaneLayout = new GridPane();
 
@@ -54,12 +61,12 @@ public class AddNewBranchRecord {
         gridPaneLayout.setVgap(8);
         gridPaneLayout.setHgap(10);
         gridPaneLayout.setAlignment(Pos.CENTER);
-        gridPaneLayout.getChildren().addAll(branchNameLabel, branchSourceNameLabel, userStoryLabel,  branchNameTextField, userStoryTextField, branchSourceNameTextField);
+        gridPaneLayout.getChildren().addAll(branchNameLabel, combo_box, branchSourceNameLabel, userStoryLabel,  branchNameTextField, userStoryTextField);
 
         GridPane.setConstraints(branchNameLabel, 0, 0);
         GridPane.setConstraints(branchNameTextField, 1, 0);
         GridPane.setConstraints(branchSourceNameLabel, 0, 1);
-        GridPane.setConstraints(branchSourceNameTextField, 1, 1);
+        GridPane.setConstraints(combo_box, 1, 1);
         GridPane.setConstraints(userStoryLabel, 0, 2);
         GridPane.setConstraints(userStoryTextField, 1, 2);
 
